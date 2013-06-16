@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Displacement Map</title>
+	<style>
+		body {
+			font-family: Helvetica, Arial, sans-serif;
+		}
+		img {
+			display: none;
+		}
+		.hidden {
+			display: none;
+		}
+	</style></head>
+<body>
+<!--var move=2; var x=0; setInterval(function(){filter.scaleX=x; x=x+move; if(x<-8){move=2} if(x>8){move=-2};}, 100);-->
+
+
+<img id="img-map" src="map.png"><h3>To see the displacement map, change the scaleX and scaleY value in the controls window.</h3>
+<img id="img-source" src="turquesa.png">
+
+<canvas id="source" class="hidden" width="600" height="600"></canvas>
+<canvas id="canvas" width="600" height="600"></canvas>
+<canvas id="map" class="hidden" width="600" height="600"></canvas>
+
+<script src="jquery.js"></script>
+<script src="displacement.js"></script>
+<script src="app.js"></script>
+
+</body></html>

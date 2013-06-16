@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>Osom Tshirt Demo</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<canvas id="tshirt" width="300" height="300">
+		<h1>You browser is old and you should feel bad</h1>
+	</canvas><br/>
+
+	<script type="text/javascript">
+	var loaded_images  = 0;
+  var total_images = 25;
+	var stills = [];
+	
+	/** Setup Canvas **/
+	var canvas = document.getElementById('tshirt');
+	if (canvas.getContext){
+		var ctx = canvas.getContext('2d');
+	}
+
+  for (var x = -2; x <= 2; x+=1) {
+    stills[x] = [];
+    for (var y = -2; y <= 2; y+=1) {
+			stills[x][y] = new Image();
+			stills[x][y].onload = function() {
+        if(++loaded_images >= total_images) {
+          ctx.drawImage(stills[0][0], 0, 0);
+				}
+			};
+      console.log('output/output_'+x+'x'+y+'.jpg');
+ 			stills[x][y].src = 'output/output_'+x+'x'+y+'.jpg';
+    }
+  }
+
+  canvas.onmousemove = function(e) {
+     var indexX = Math.floor( ((((e.clientX-e.target.offsetLeft)/60))-1.9) );
+     if(indexX>=3){indexX=2};
+     var indexY = Math.floor( ((((e.clientY-e.target.offsetTop)/60))-1.9) );
+     if(indexY>=3){indexY=2};
+     ctx.drawImage(stills[indexX][indexY], 0, 0);
+  }
+	</script>
+	</body>
+</html>

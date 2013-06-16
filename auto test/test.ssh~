@@ -1,0 +1,16 @@
+#!/bin/bash
+convert $1  -resize 200%  bigger_source.png
+convert $2  -resize 200%  bigger_map.png
+output=${3-.}
+for x in {-20..20..10};
+do
+  for y in {-20..20..10};
+  do
+     x_name=$((x/10))
+     y_name=$((y/10))      
+     composite bigger_map.png bigger_source.png bigger_map.png -displace ${x}x${y} miff:- | convert - -resize 25%  -format jpeg -quality 90 "${output}/output_${x_name}x${y_name}.jpg"
+  done
+done
+rm bigger_source.png
+rm bigger_map.png
+
